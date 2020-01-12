@@ -1,0 +1,32 @@
+import static org.gradle.internal.os.OperatingSystem.current
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.javamodularity.moduleplugin' version '1.6.0'
+}
+
+group 'pl.kul'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+application {
+    mainClassName = 'pl.kul.FxApplicationRunner'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    def platform = current().isWindows() ? 'win' : current().isLinux() ? 'linux' : 'mac'
+
+    compile group: 'org.openjfx', name: 'javafx-base', version: '11.0.2', classifier: platform
+    compile group: 'org.openjfx', name: 'javafx-graphics', version: '11.0.2', classifier: platform
+    compile group: 'org.openjfx', name: 'javafx-controls', version: '11.0.2', classifier: platform
+    compile group: 'org.openjfx', name: 'javafx-fxml', version: '11.0.2', classifier: platform
+    compile group: 'org.openjfx', name: 'javafx-web', version: '11.0.2', classifier: platform
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
