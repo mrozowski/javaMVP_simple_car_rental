@@ -1,13 +1,27 @@
 package pl.kul.mainwindow;
 
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
+import pl.kul.Cardetails.CarDetailsPresenterFactory;
+import pl.kul.carreservation.CarReservationPresenterFactory;
 
 public class MainWindowPresenterFactory {
-    public MainWindowPresenter create(Stage primaryStage) {
-        MainWindowView view = new MainWindowView(primaryStage);
-        MainWindowPresenter presenter = new MainWindowPresenter(view);
+    private final Pane rootLayout;
+    private final CarReservationPresenterFactory carReservationPresenterFactory;
+    private final CarDetailsPresenterFactory carDetailsPresenterFactory;
+   // private final SummaryPresenterFactory summaryPresenterFactory;
 
-        view.setPresenter(presenter);
+    public MainWindowPresenterFactory(Pane rootLayout, CarReservationPresenterFactory carReservationPresenterFactory, CarDetailsPresenterFactory carDetailsPresenterFactory ) {
+        this.rootLayout = rootLayout;
+        this.carReservationPresenterFactory = carReservationPresenterFactory;
+        this.carDetailsPresenterFactory = carDetailsPresenterFactory;
+        //summarywindow
+       // this.summaryPresenterFactory = summaryPresenterFactory;
+    }
+
+    public MainWindowPresenter create(Cars cars) {
+        MainWindowView mainWindowView = new FxMainWindowView(rootLayout);
+        MainWindowPresenter presenter = new MainWindowPresenter(cars, mainWindowView, carReservationPresenterFactory, carDetailsPresenterFactory);
+        mainWindowView.setPresenter(presenter);
 
         return presenter;
     }
