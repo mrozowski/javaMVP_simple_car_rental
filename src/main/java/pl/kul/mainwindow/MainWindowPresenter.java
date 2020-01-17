@@ -1,5 +1,7 @@
 package pl.kul.mainwindow;
 
+import pl.kul.CarSummary.CarSummaryPresenter;
+import pl.kul.CarSummary.CarSummaryPresenterFactory;
 import pl.kul.carreservation.CarReservationPresenterFactory;
 import pl.kul.Cardetails.CarDetailsPresenterFactory;
 
@@ -28,15 +30,10 @@ public class MainWindowPresenter {
 
         mainWindowView.displayCarItems(cars.getItems());
     }
-
-
-
-
     public void setReservation(Car_Item carItem) {
         carReservationPresenterFactory.create(this)
                 .showCarReservationCreator(carItem);
     }
-
 
     public void setReservation(UUID id, LocalDate[] date) {
         cars.addReservation(id, date);
@@ -55,5 +52,4 @@ public class MainWindowPresenter {
         carDetailsPresenterFactory.create(this)
                 .showItemDetails(cars.getItem(id));
     }
-
 }

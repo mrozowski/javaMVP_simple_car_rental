@@ -19,6 +19,14 @@ class CarReservation {
         return id;
     }
 
+    public LocalDate getReservationDate_start() {
+        return reservationDate_start;
+    }
+
+    public LocalDate getReservationDate_finish() {
+        return reservationDate_finish;
+    }
+
     public LocalDate[] getReservation() {
         return new LocalDate[]{this.reservationDate_start, this.reservationDate_finish};
     }

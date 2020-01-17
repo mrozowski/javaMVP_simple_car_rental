@@ -24,12 +24,18 @@ public class FxApplication extends Application {
     public void start(Stage primaryStage){
         Pane rootLayout = new VBox();
         Scene scene = new Scene(rootLayout);
-        List<Car_Item> items;
+        // List<Car_Item> items;
 
         //okno z podsumowaniem - do zrobienia
-        SummaryPresenterFactory summaryPresenterFactory = new SummaryPresenterFactory();
 
-        items = getCarsFromFile(); //pobranie listy samochodow z pliku
+
+        //items = getCarsFromFile(); //pobranie listy samochodow z pliku
+
+        List<Car_Item> items = new LinkedList<>(List.of(
+                new Car_Item(UUID.randomUUID(), "Fiat ", "Panda ", "czerwony", "benzyna ", 1.2f, 69, 2008, 12.5f)
+                // kolejne samochody
+        ));
+        SummaryPresenterFactory summaryPresenterFactory = new SummaryPresenterFactory();
         Cars cars = new Cars(items);
 
         // Presenters & views
@@ -70,7 +76,7 @@ public class FxApplication extends Application {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
+        temp.add(new Car_Item(UUID.fromString("1"), "Honda","Accord", "Czerwony", "ropa", 1.2f, 90, 2005, 10.5f));
         return temp;
     }
 }

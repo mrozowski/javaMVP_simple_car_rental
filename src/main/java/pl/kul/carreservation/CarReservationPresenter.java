@@ -1,5 +1,8 @@
 package pl.kul.carreservation;
 
+import javafx.scene.control.DatePicker;
+import pl.kul.CarSummary.CarSummaryPresenter;
+import pl.kul.CarSummary.CarSummaryPresenterFactory;
 import pl.kul.mainwindow.Car_Item;
 import pl.kul.mainwindow.MainWindowPresenter;
 import pl.kul.summary.SummaryPresenterFactory;
@@ -47,5 +50,12 @@ public class CarReservationPresenter {
         }
 
         return false;
+    }
+
+    public void showCarSummary(Car_Item carItem, DatePicker datePicker, DatePicker datePicker2) {
+        CarSummaryPresenter carSummaryPresenter = new CarSummaryPresenterFactory()
+                .create();
+
+        carSummaryPresenter.showCarSummary(carItem, datePicker, datePicker2);
     }
 }

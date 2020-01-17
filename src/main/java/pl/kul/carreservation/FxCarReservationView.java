@@ -10,8 +10,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import pl.kul.mainwindow.Car_Item;
+import pl.kul.summary.FxSummaryView;
+import pl.kul.summary.SummaryPresenter;
+import pl.kul.summary.SummaryPresenterFactory;
+import pl.kul.summary.SummaryView;
 
+import java.text.MessageFormat;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 class FxCarReservationView implements CarReservationView {
     private CarReservationPresenter presenter;
@@ -26,8 +32,6 @@ class FxCarReservationView implements CarReservationView {
         DatePicker datePicker = new DatePicker();
         DatePicker datePicker2 = new DatePicker();
 
-
-
         ColumnConstraints leftColumn = new ColumnConstraints();
         leftColumn.setMinWidth(ColumnConstraints.CONSTRAIN_TO_PREF);
         leftColumn.setHalignment(HPos.RIGHT);
@@ -40,7 +44,6 @@ class FxCarReservationView implements CarReservationView {
         content.setPadding(new Insets(5));
         content.setHgap(5);
         content.setVgap(5);
-
 
         VBox summaryLabelLayout = new VBox(new Label("Od kiedy:"));
         summaryLabelLayout.setAlignment(Pos.TOP_RIGHT);
@@ -78,7 +81,9 @@ class FxCarReservationView implements CarReservationView {
                 errorMessage = "Przepraszamy podana data jest juz zajeta :(";
 
             }
-
+            else {
+                presenter.showCarSummary(carItem, datePicker, datePicker2);
+            }
             //jesli pojawil sie blad
             if (errorMessage != null) {
                 event.consume();
@@ -86,13 +91,9 @@ class FxCarReservationView implements CarReservationView {
                 new Alert(Alert.AlertType.ERROR, errorMessage, ButtonType.OK)
                         .showAndWait();
             }
-
-
         });
 
         itemDialog.showAndWait()
                 .ifPresent(carReservation -> presenter.addReservation(carReservation));
     }
-
-
 }

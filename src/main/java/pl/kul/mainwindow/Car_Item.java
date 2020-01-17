@@ -19,7 +19,7 @@ public class Car_Item {
     private List<LocalDate> reservation; //daty rezerwacji samochodu
 
     public Car_Item(UUID id, String marka, String model, String color, String fueltype, float capacity, int hp, int year, float price) {
-        this.id = id;
+        this.id = UUID.fromString(String.valueOf(id));
         this.marka = marka;
         this.model = model;
         this.color = color;
