@@ -21,8 +21,8 @@ public class CarSummaryView {
         gridPane.setVgap(5);
 
         gridPane.addRow(0, new Label("Dane auta:"), new Label(carSummaryDto.getMarka() + carSummaryDto.getModel() + carSummaryDto.getRocznik() + " rok."));
-        gridPane.addRow(1, new Label("Koszt wypożyczenia: "), new Label(String.valueOf((carSummaryDto.getKoszt()*24*0.80) + "zł/dzień")));
-        gridPane.addRow(2, new Label("Okres wypożyczenia od: "), new Label(carSummaryDto.getOd() + " do " + carSummaryDto.getD_o()));
+        gridPane.addRow(1, new Label("Koszt wypozyczenia: "), new Label(Math.round(carSummaryDto.getKoszt() * 24 * 0.80) + " PLN / dzien"));
+        gridPane.addRow(2, new Label("Okres wypozyczenia od: "), new Label(carSummaryDto.getOd() + " do " + carSummaryDto.getD_o()));
         gridPane.addRow(3, new Label("Koszt rezerwacji za " + carSummaryDto.getDays() + "dni:"), new Label(String.valueOf(carSummaryDto.getR1())));
 
         Dialog<ButtonType> dialog = new Dialog<>();

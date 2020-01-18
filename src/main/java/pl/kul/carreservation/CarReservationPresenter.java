@@ -5,7 +5,7 @@ import pl.kul.CarSummary.CarSummaryPresenter;
 import pl.kul.CarSummary.CarSummaryPresenterFactory;
 import pl.kul.mainwindow.Car_Item;
 import pl.kul.mainwindow.MainWindowPresenter;
-import pl.kul.summary.SummaryPresenterFactory;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,12 +13,11 @@ import java.util.List;
 public class CarReservationPresenter {
     private final CarReservationView carReservationView;
     private final MainWindowPresenter mainWindowPresenter;
-    private final SummaryPresenterFactory summaryPresenterFactory;
 
-    public CarReservationPresenter(CarReservationView carReservationView, MainWindowPresenter mainWindowPresenter, SummaryPresenterFactory summaryPresenterFactory) {
+
+    public CarReservationPresenter(CarReservationView carReservationView, MainWindowPresenter mainWindowPresenter) {
         this.carReservationView = carReservationView;
         this.mainWindowPresenter = mainWindowPresenter;
-        this.summaryPresenterFactory = summaryPresenterFactory;
     }
 
 
@@ -30,11 +29,7 @@ public class CarReservationPresenter {
         mainWindowPresenter.setReservation(carReservation.getId(), carReservation.getReservation());
     }
 
-    public void showSummaryOfReservation(String car, LocalDate[] reservation, float price){
-        System.out.println("showSummaryofReservation");
-        summaryPresenterFactory.create(this)
-                .showSummary(car, reservation, price);
-    }
+
 
     boolean checkReservationAvailability(List<LocalDate> reservation, LocalDate value, LocalDate value1) {
         LocalDate borrow, toReturn;
@@ -49,7 +44,7 @@ public class CarReservationPresenter {
             else if(borrow.isAfter(value) && toReturn.isBefore(value1)) return true;
         }
 
-        return false;
+        return false; //wolna
     }
 
     public void showCarSummary(Car_Item carItem, DatePicker datePicker, DatePicker datePicker2) {

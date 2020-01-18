@@ -2,6 +2,7 @@ package pl.kul.mainwindow;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
@@ -20,6 +21,7 @@ class FxMainWindowView implements MainWindowView {
 
         itemListView = new ListView<>();
         itemListView.setMinHeight(250);   //wysokość głównego okna
+        itemListView.setMinWidth(380);
         itemListView.setCellFactory(param -> new Car_ItemsList(
                 carItem -> presenter.setReservation(carItem),
                 carDetails -> presenter.showDetails(carDetails.getId())
@@ -27,14 +29,16 @@ class FxMainWindowView implements MainWindowView {
 
         VBox layout = new VBox();
         VBox header = new VBox();
-        Label _text = new Label("Wypozyczalnia samochodow");
+        Label _text = new Label("Car reservation app");
+
         _text.setFont(new Font(24));
         _text.setPadding(new Insets(5));
         header.getChildren().add(_text);
+        header.setAlignment(Pos.CENTER);
 
         VBox.setVgrow(layout, Priority.ALWAYS);
         layout.setPadding(new Insets(5));
-        layout.setSpacing(10);
+        layout.setSpacing(15);
         layout.getChildren().add(itemListView);
 
         parent.getChildren().add(header);

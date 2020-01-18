@@ -10,18 +10,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import pl.kul.mainwindow.Car_Item;
-import pl.kul.summary.FxSummaryView;
-import pl.kul.summary.SummaryPresenter;
-import pl.kul.summary.SummaryPresenterFactory;
-import pl.kul.summary.SummaryView;
-
-import java.text.MessageFormat;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+
 
 class FxCarReservationView implements CarReservationView {
     private CarReservationPresenter presenter;
-    private ListView<Car_Item> abc;
     @Override
     public void setPresenter(CarReservationPresenter presenter) {
         this.presenter = presenter;
@@ -54,7 +47,7 @@ class FxCarReservationView implements CarReservationView {
         content.addRow(1, summaryLabelLayout2, datePicker2);
 
         Dialog<CarReservation> itemDialog = new Dialog<>();
-        itemDialog.setTitle("Zarezerwuj");
+        itemDialog.setTitle("Rezerwacja");
         itemDialog.getDialogPane().setContent(content);
         itemDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         itemDialog.setResultConverter(buttonPressed -> (buttonPressed == ButtonType.OK)
@@ -76,20 +69,22 @@ class FxCarReservationView implements CarReservationView {
                 errorMessage = "Podano nie wlasciwa date";
             }
 
-            //sprawdzenie czy podana data nie jest zajeta : true - zajeta
+            //sprawdzenie czy podana data nie jest zajeta : true == zajeta
             else if(presenter.checkReservationAvailability(carItem.getReservation(), datePicker.getValue(), datePicker2.getValue())){
                 errorMessage = "Przepraszamy podana data jest juz zajeta :(";
 
             }
-            else {
-                presenter.showCarSummary(carItem, datePicker, datePicker2);
-            }
+
             //jesli pojawil sie blad
             if (errorMessage != null) {
                 event.consume();
 
                 new Alert(Alert.AlertType.ERROR, errorMessage, ButtonType.OK)
                         .showAndWait();
+            }
+            else {
+                //jezeli nie ma zadnego błedu to pokaz okno z podsumowaniem
+                presenter.showCarSummary(carItem, datePicker, datePicker2);
             }
         });
 

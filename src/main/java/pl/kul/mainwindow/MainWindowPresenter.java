@@ -29,6 +29,7 @@ public class MainWindowPresenter {
 
 
         mainWindowView.displayCarItems(cars.getItems());
+        this.sortListByPrice(cars.getItems());
     }
     public void setReservation(Car_Item carItem) {
         carReservationPresenterFactory.create(this)
@@ -37,16 +38,17 @@ public class MainWindowPresenter {
 
     public void setReservation(UUID id, LocalDate[] date) {
         cars.addReservation(id, date);
-        displayCarItems(cars.getItems());
+
     }
 
-    public void displayCarItems(List<Car_Item> items) {
+    public void sortListByPrice(List<Car_Item> items) {
         List<Car_Item> sortedItems = items.stream()
                 .sorted(new CarPriceComparator())
                 .collect(Collectors.toList());
 
         mainWindowView.displayCarItems(sortedItems);
     }
+
 
     public void showDetails(UUID id) {
         carDetailsPresenterFactory.create(this)
