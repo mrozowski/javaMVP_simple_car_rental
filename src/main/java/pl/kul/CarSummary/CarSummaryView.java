@@ -20,10 +20,10 @@ public class CarSummaryView {
         gridPane.setHgap(5);
         gridPane.setVgap(5);
 
-        gridPane.addRow(0, new Label("Dane auta:"), new Label(carSummaryDto.getMarka() + carSummaryDto.getModel() + carSummaryDto.getRocznik() + " rok."));
+        gridPane.addRow(0, new Label("Dane auta:"), new Label(carSummaryDto.getMarka() + " " + carSummaryDto.getModel() + " " +carSummaryDto.getRocznik() + " rok."));
         gridPane.addRow(1, new Label("Koszt wypozyczenia: "), new Label(Math.round(carSummaryDto.getKoszt() * 24 * 0.80) + " PLN / dzien"));
         gridPane.addRow(2, new Label("Okres wypozyczenia od: "), new Label(carSummaryDto.getOd() + " do " + carSummaryDto.getD_o()));
-        gridPane.addRow(3, new Label("Koszt rezerwacji za " + carSummaryDto.getDays() + "dni:"), new Label(String.valueOf(carSummaryDto.getR1())));
+        gridPane.addRow(3, new Label("Koszt rezerwacji za " + carSummaryDto.getDays() + "dni:"), new Label(carSummaryDto.getR1() + " PLN / dzien"));
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Podsumowanie rezerwacji");

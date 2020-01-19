@@ -37,7 +37,7 @@ class Car_ItemsList extends ListCell<Car_Item> {
             Text price = new Text(item.getPrice()+ "PLN/h ");
 
 
-            Button rezervation_button = new Button("Reserve Me");
+            Button rezervation_button = new Button("Rezerwacja");
 
             rezervation_button.setVisible(true);
             rezervation_button.setStyle("-fx-background-color: #2e8b57; -fx-text-fill: #ffffff;" +
@@ -48,7 +48,7 @@ class Car_ItemsList extends ListCell<Car_Item> {
                 onTickClicked.accept(item);
             });
 
-            Button details_button = new Button("Details");
+            Button details_button = new Button("Wiecej");
             details_button.setStyle("-fx-background-color: #edfa8e; -fx-cursor: hand;");
             details_button.setVisible(true);
             details_button.setMinSize(45,35);

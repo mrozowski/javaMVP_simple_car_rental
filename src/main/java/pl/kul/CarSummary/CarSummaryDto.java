@@ -40,8 +40,8 @@ public class CarSummaryDto {
         LocalDate od = date1.getValue();
         LocalDate d_o = date2.getValue();
 
-        long days = ChronoUnit.DAYS.between(od, d_o);
-        float r1 = (float) ((Koszt * 24 * 0.80) * days);
+        long days = ChronoUnit.DAYS.between(od, d_o) + 1;
+        float r1 = (float) Math.round(((Koszt * 24 * 0.80) * days));
 
         return new CarSummaryDto(Marka, Model, Rocznik, Koszt, r1, days, od, d_o);
     }

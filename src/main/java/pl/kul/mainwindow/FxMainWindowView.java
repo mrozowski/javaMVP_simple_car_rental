@@ -10,6 +10,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.net.URL;
 import java.util.List;
 
 class FxMainWindowView implements MainWindowView {
@@ -29,7 +30,7 @@ class FxMainWindowView implements MainWindowView {
 
         VBox layout = new VBox();
         VBox header = new VBox();
-        Label _text = new Label("Car reservation app");
+        Label _text = new Label("Rezerwacja auta");
 
         _text.setFont(new Font(24));
         _text.setPadding(new Insets(5));
@@ -43,6 +44,9 @@ class FxMainWindowView implements MainWindowView {
 
         parent.getChildren().add(header);
         parent.getChildren().add(layout); //lista pojazdow
+
+
+
     }
 
     @Override

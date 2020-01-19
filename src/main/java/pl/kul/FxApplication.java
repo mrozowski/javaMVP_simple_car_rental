@@ -78,10 +78,15 @@ public class FxApplication extends Application {
                 String model = plik.next();
                 String color = plik.next();
                 String fuel = plik.next();
-                float capacity = plik.nextFloat();
+
+                String rawCapacity = plik.next();
+                float capacity = Float.parseFloat(rawCapacity);
+
                 int hp = plik.nextInt();
                 int year = plik.nextInt();
-                float price = plik.nextFloat();
+
+                String rawPrice = plik.next();
+                float price = Float.parseFloat(rawPrice);
 
                 temp.add(new Car_Item(UUID.fromString(id), marka, model, color, fuel, capacity, hp, year, price));
 
