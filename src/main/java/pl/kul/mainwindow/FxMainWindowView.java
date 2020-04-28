@@ -42,7 +42,7 @@ class FxMainWindowView implements MainWindowView {
         layout.setSpacing(15);
         layout.getChildren().add(itemListView);
 
-        parent.getChildren().add(header);
+
         parent.getChildren().add(layout); //lista pojazdow
 
 

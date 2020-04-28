@@ -26,8 +26,6 @@ public class FxApplication extends Application {
         Scene scene = new Scene(rootLayout);
 
 
-
-
         //**************** Dodanie listy samochodow ***********************************
 
 //        List<Car_Item> items = new LinkedList<>(List.of(
@@ -36,8 +34,6 @@ public class FxApplication extends Application {
 //        ));
 
         //*****************************************************************************
-
-
         //**************** Pobranie listy samochodow z pliku **************************
 
          List<Car_Item> items;
